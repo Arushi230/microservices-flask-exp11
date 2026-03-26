@@ -1,30 +1,24 @@
 from flask import Flask, jsonify
+import os
 
 app = Flask(__name__)
 
-# In-memory data
 customers = {
-    1: {
-        "name": "Arushi",
-        "orders": [101, 102]
-    },
-    2: {
-        "name": "Rahul",
-        "orders": [103]
-    }
+    1: {"name": "Arushi", "orders": [101,102]},
+    2: {"name": "Rahul", "orders": [103]}
 }
 
-@app.route('/customers/<int:customer_id>/orders', methods=['GET'])
-def get_customer_orders(customer_id):
+@app.route('/customers/<int:customer_id>/orders')
+def get_orders(customer_id):
+
     customer = customers.get(customer_id)
 
     if customer:
-        return jsonify({
-            "customer_id": customer_id,
-            "orders": customer["orders"]
-        })
+        return jsonify(customer)
     else:
-        return jsonify({"message": "Customer not found"}), 404
+        return {"message":"Customer not found"},404
 
-if __name__ == '__main__':
-    app.run(port=5000)
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
