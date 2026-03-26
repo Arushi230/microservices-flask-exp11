@@ -8,17 +8,20 @@ customers = {
     2: {"name": "Rahul", "orders": [103]}
 }
 
-@app.route('/customers/<int:customer_id>/orders')
-def get_orders(customer_id):
+@app.route('/customers/<int:customer_id>/orders', methods=['GET'])
+def get_customer_orders(customer_id):
 
     customer = customers.get(customer_id)
 
     if customer:
-        return jsonify(customer)
+        return jsonify({
+            "customer_id": customer_id,
+            "orders": customer["orders"]
+        })
     else:
-        return {"message":"Customer not found"},404
+        return jsonify({"message":"Customer not found"}),404
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT",10000))
     app.run(host="0.0.0.0", port=port)
