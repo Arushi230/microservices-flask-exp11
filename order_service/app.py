@@ -9,6 +9,10 @@ orders = {
 103:{"status":"Pending"}
 }
 
+@app.route('/')
+def home():
+    return "Order Service is running successfully"
+
 @app.route("/orders/<int:order_id>",methods=["PUT"])
 def update_order(order_id):
 

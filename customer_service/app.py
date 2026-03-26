@@ -7,6 +7,9 @@ customers = {
     1: {"name": "Arushi", "orders": [101,102]},
     2: {"name": "Rahul", "orders": [103]}
 }
+@app.route('/')
+def home():
+    return "Customer Service is running successfully"
 
 @app.route('/customers/<int:customer_id>/orders', methods=['GET'])
 def get_customer_orders(customer_id):
