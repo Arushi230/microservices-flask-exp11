@@ -30,6 +30,10 @@ PUT /orders/{id}
     "new_status": "Shipped",
     "order_id": 101
 }
+# Learning Outcomes
+Learnt about backend resources
+Learnt about postman commands
+
 # Screenshots
 ![customer service by GET](<Screenshot (368).png>)
 ![order service by PUT](<Screenshot (369).png>)
